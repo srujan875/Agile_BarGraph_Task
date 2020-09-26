@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    
+    <script src="Chart.js"></script>
+    <title>Sales Chart</title>
+
+   
+       
+  <script>
+            
+function populate1(s1,s2){
+  var s1 = document.getElementById(s1);
+  var s2 = document.getElementById(s2);
+  s2.innerHTML="select product";
+  if(s1.value == "food"){
+      var optionArray = ["|","ceral|cerals","fruit|fruits"];
+  } else if(s1.value == "cloth"){
+      var optionArray = ["|","shirt|shirts","pant|pants"];
+  } 
+  for(var option in optionArray){
+      var pair = optionArray[option].split("|");
+      var newOption = document.createElement("option");
+      newOption.value = pair[0];
+      newOption.innerHTML = pair[1];
+      s2.options.add(newOption);
+  }
+
+
+
+}
+
+function populate2(s1,s2){
+  var s1 = document.getElementById(s1);
+  var s2 = document.getElementById(s2);
+  s2.innerHTML="select Brand";
+  if(s1.value == "ceral"){
+      var optionArray = ["|","ceral1|cerals1","ceral2|cerals2"];
+  } else if(s1.value == "fruit"){
+      var optionArray = ["|","fruit1|fruits1","fruit2|fruits2"];
+  } 
+  else if(s1.value == "shirt"){
+      var optionArray = ["|","shirt1|shirts1","shirt2|shirts2"];
+  } 
+  else if(s1.value == "pant"){
+      var optionArray = ["|","pant1|pants1","pant2|pants2"];
+  } 
+  for(var option in optionArray){
+      var pair = optionArray[option].split("|");
+      var newOption = document.createElement("option");
+      newOption.value = pair[0];
+      newOption.innerHTML = pair[1];
+      s2.options.add(newOption);
+  }
+ 
+}
+
+        </script>
+
+       
+  </head>
+
+
+<body>
+    <div class="wrapper" style="height:40px;width:100%;position:fixed;top:0;
+    z-index:1000;box-shadow: 0 3px 5px #607D8B;background-color:cadetblue; color: cornsilk;">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-3 col-sm-2 col-md-4 col-lg-1">
+                   <h4>Menu</h4>
+                </div>
+                <div class=" car xs-hidden col-xs-4 col-sm-2 col-md-4 col-lg-5">
+                   <h4>UserName</h4>
+                </div>
+               
+                <div class=" car xs-hidden col-xs-4 col-sm-2 col-md-4 col-lg-5">
+                    <h4>Sales Report</h4>
+                 </div>
+                
+        
+
+            </div>
+        </div>
+    </div>
+   
+   <div class="container" style="margin-top:75px;">
+       <div class="row">
+           <div class="col-md-4">
+    
+    category: 
+        <select id="category"  onchange="populate1(this.id,'product')">
+          <option selected="">choose category</option>
+          <option value="food">Food</option>
+          <option value="cloth">Clothes</option>
+          
+        </select>
+    </div>
+
+    <div class="col-md-4">
+      
+    Product :
+        <select id="product"   onchange="populate2(this.id,'brand')">
+            <option>select Product</option>
+        </select>
+    </div>
+        <div class="col-md-4">
+     Brand :
+       
+        <select id="brand" onchange="grapher()">
+            <option>select Brand</option>
+        </select>
+    
+    </div>
+</div>
+
+        <div class="chart-container" style="position: relative; width:80vw">
+            <canvas id="my_Chart"></canvas>
+        </div>   
+    </div>    
+	</body>
+</html>
